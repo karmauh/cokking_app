@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}Edit recipe...{% endblock %}
+
+{% block content %}
+
+<style>
+
+.form-group {
+    width: 50%;
+    margin-left: 50vh;
+}
+
+
+</style>
+
+<br>
+
+<div class="form-group">
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn btn-secondary" style="width: 235px;">Update</button>
+        <input class="btn btn-secondary" type="reset" value="Retract changes">
+        <a href="{% url 'recipes' %}" class="btn btn-secondary">Back</a>
+    </form>
+</div>
+
+{% endblock%}

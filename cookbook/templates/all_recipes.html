@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{% block title %}All Recipes{% endblock %}
+
+{% block content %}
+
+<style>
+
+.container {
+    font-size: 20px;
+    margin-top: 20px;
+    padding-left: 115px;
+}
+
+.content {
+    padding: 10px;
+}
+
+.details {
+    text-decoration: none; 
+    color: white;
+}
+
+.details:hover {
+    color: darkgrey;
+    text-decoration: underline; 
+}
+
+</style>
+
+{% for cook in cook_items %}
+
+<div class="container">
+    <div class="content">
+        <button class="btn btn-dark" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling-{{cook.id}}" aria-controls="offcanvasScrolling-{{cook.id}}" id="title">{{ cook.title }}</button>
+        {% if user.is_authenticated and user.id == 1 %}
+            <small style="padding: 10px;">
+                <a href="{% url 'edit_recipe' cook.pk %}" class="details">(Edit)</a>
+                
+            </small>
+        {% endif %}
+    </div>
+    <small><b>{{ cook.author }}</b> || <i><b>{{ cook.created_at }}</b></i></small>
+    <br><br>
+    <p>
+        {{ cook.snippet }}
+    </p>
+    <br>
+</div>
+
+
+<div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling-{{cook.id}}" aria-labelledby="offcanvasScrollingLabel">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Recipe for <i><b>{{ cook.title }}</b></i></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <hr>
+    <div class="offcanvas-body">
+    {% if cook.description %}
+        {{ cook.description|linebreaks }}
+    {% else %}
+        <p>
+            No description available.
+        </p>
+    {% endif %}
+    </div>
+</div>
+ 
+{% endfor %}
+
+{% endblock %}
