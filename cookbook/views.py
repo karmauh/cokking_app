@@ -19,4 +19,9 @@ class EditRecipeView(UpdateView):
     model = CookBook
     form_class = EditRecipeForm
     template_name = 'edit_recipe.html'
-    success_url = reverse_lazy('recies')
+    
+    def form_valid(self, form):
+        form.instance.post_id = self.kwargs['pk']
+        return super().form_valid(form)
+    
+    success_url = reverse_lazy('home')
