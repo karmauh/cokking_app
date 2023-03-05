@@ -254,27 +254,27 @@
     Whether you're a novice or an experienced chef, our platform is the perfect place to explore, 
     experiment and delight in new flavors. 
     <br><br>
-    {% if user.is_authenticated %} DO ZMIANY
+    {% if not user.is_authenticated %} DO ZMIANY
         Join us today and let's savor the joy of cooking together! <br>
         Click <a href="">here</a> to create an account.
     {% endif %}
 </p>
 
-    <div id="cooking">
-        <div class="bubble"></div>
-        <div class="bubble"></div>
-        <div class="bubble"></div>
-        <div class="bubble"></div>
-        <div class="bubble"></div>
-        <div id="area">
-            <div id="sides">
-                <div id="pan"></div>
-                <div id="handle"></div>
-            </div>
-            <div id="pancake">
-                <div id="pastry"></div>
-            </div>
+<div id="cooking">
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div id="area">
+        <div id="sides">
+            <div id="pan"></div>
+            <div id="handle"></div>
+        </div>
+        <div id="pancake">
+            <div id="pastry"></div>
         </div>
     </div>
+</div>
     
 {% endblock %}
