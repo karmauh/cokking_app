@@ -36,7 +36,28 @@
         {% if user.is_authenticated and user.id == 1 %}
             <small style="padding: 10px;">
                 <a href="{% url 'edit_recipe' cook.pk %}" class="details">(Edit)</a>
-                
+                {% if user.is_authenticated and uer.id == id %}
+                <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    (Delete)
+                </button>
+                  <!-- Modal -->
+                  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-body" style="color: black">
+                            Are you sure you want to delete this recipe?
+                        </div>
+                        <div class="modal-footer">
+                            <form method="post">
+                                {% csrf_token %}
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <a href="{% url 'delete_recipe' cook.pk %}" class="btn btn-danger">Delete</a>
+                            </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                {% endif %}
             </small>
         {% endif %}
     </div>
