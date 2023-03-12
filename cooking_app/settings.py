@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     
     # my apps
     'cookbook',
+    'ckeditor',
 ]
 
 MIDDLEWARE = [
