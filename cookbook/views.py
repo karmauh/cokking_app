@@ -1,7 +1,7 @@
 from django.shortcuts import render
-from django.views.generic import ListView, UpdateView, DeleteView
+from django.views.generic import ListView, UpdateView, DeleteView, CreateView
 from .models import CookBook
-from .forms import EditRecipeForm
+from .forms import EditRecipeForm, AddRecipeForm
 from django.urls import reverse_lazy
 from django.http import HttpResponseRedirect
 
@@ -33,4 +33,11 @@ class EditRecipeView(UpdateView):
 class DeleteRecipeView(DeleteView):
     model = CookBook
     template_name = 'delete_recipe.html'
+    success_url = reverse_lazy('recipes')
+    
+
+class AddRecipeView(CreateView):
+    model = CookBook
+    form_class = AddRecipeForm
+    template_name = 'add_recipe.html'
     success_url = reverse_lazy('recipes')
