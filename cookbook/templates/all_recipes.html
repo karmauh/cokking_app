@@ -78,7 +78,7 @@
     <hr>
     <div class="offcanvas-body">
     {% if cook.description %}
-        {{ cook.description|linebreaks }}
+        {{ cook.description|safe|linebreaks }}
     {% else %}
         <p>
             No description available.
